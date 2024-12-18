@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/Style11.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qual membro da BatFamily você é?</title>
+</head>
+<body>
+    <div class="quizConteiner">
+        <h1>Quiz</h1>
+        <img src="assets/img/batheader.jpg" alt="Header da Batfam" id="imgheader">
+        <h1 id="titulo">Qual Membro da BatFamily você é?</h1>
+        <div class="questoes">
+            <p class="pergunta">Para onde você viajaria durante as férias?</p>
+        </div>
+        <form class="opcoes">
+            <label>
+                <input type="radio" name="resposta" value="batman">
+                Uma ilha isolada com uma praia tranquila.
+            </label>
+            <label>
+                <input type="radio" name="resposta" value="nightwing">
+                Para uma cidade grande e vibrante.
+            </label>
+            <label>
+                <input type="radio" name="resposta" value="redhood">
+                Para um lugar remoto, cercado por floresta e vida selvagem.
+            </label>
+            <label>
+                <input type="radio" name="resposta" value="redrobin">
+                Para um país estrangeiro com uma cultura rica e histórica.
+            </label>
+        </form>
+        <button class="botao" onclick="finalizarQuiz()">Finalizar</button>
+    </div>
+    <script>
+        function finalizarQuiz() {
+            const respostas = document.getElementsByName("resposta");
+            let selecionada = null;
+
+            respostas.forEach((resposta) => {
+                if (resposta.checked) {
+                    selecionada = resposta.value;
+                }
+            });
+
+            if (selecionada) {
+                let robin = 0;
+                let batman = 0;
+                let redhood = 0;
+                let redrobin = 0;
+                let nightwing = 0;
+
+                localStorage.setItem("Questao10", selecionada);
+                let QuestaoValor = "";
+                for (let index = 1; index < 11; index++) {
+                    QuestaoValor = "Questao" + index + "";
+                    if (localStorage.getItem(QuestaoValor) == "batman") {
+                        batman++;
+                    }
+                }
+
+                for (let index = 1; index < 11; index++) {
+                    QuestaoValor = "Questao" + index + "";
+                    if (localStorage.getItem(QuestaoValor) == "nightwing") {
+                        nightwing++;
+                    }
+                }
+
+                for (let index = 1; index < 11; index++) {
+                    QuestaoValor = "Questao" + index + "";
+                    if (localStorage.getItem(QuestaoValor) == "redhood") {
+                        redhood++;
+                    }
+                }
+
+                for (let index = 1; index < 11; index++) {
+                    QuestaoValor = "Questao" + index + "";
+                    if (localStorage.getItem(QuestaoValor) == "redrobin") {
+                        redrobin++;
+                    }
+                }
+
+                for (let index = 1; index < 11; index++) {
+                    QuestaoValor = "Questao" + index + "";
+                    if (localStorage.getItem(QuestaoValor) == "robin") {
+                        robin++;
+                    }
+                }
+
+                //index 4
+                if(localStorage.getItem("Questao3") == "redhood-robin"){
+                    redhood++;
+                    robin++;
+                }
+                
+                //index 5
+                if(localStorage.getItem("Questao4") == "batman-robin"){
+                    batman++;
+                    robin++;
+                }
+                
+                //index 6
+                if(localStorage.getItem("Questao5") == "nightwing-robin"){
+                    nightwing++;
+                    robin++;
+                }
+                
+                //index 7
+                if(localStorage.getItem("Questao6") == "redhood-robin"){
+                    redhood++;
+                    robin++;
+                }
+
+                //index 10
+                if(localStorage.getItem("Questao9") == "redhood-robin"){
+                    redhood++;
+                    robin++;
+                }
+                
+                let maior = 0;
+                let pagina = "";
+                if (batman > maior) {
+                    maior = batman;
+                    pagina = "Batman.html";
+                }
+                if (redhood > maior) {
+                    maior = redhood;
+                    pagina = "Redhood.html";
+                }
+                if (redrobin > maior) {
+                    maior = redrobin;
+                    pagina = "Redrobin.html";
+                }
+                if (nightwing > maior) {
+                    maior = nightwing;
+                    pagina = "Nightwing.html";
+                }
+                if (robin > maior) {
+                    maior = nightwing;
+                    pagina = "Robin.html";
+                }
+
+                window.location.href = pagina;
+            } else {
+                alert("Por favor, selecione uma opção antes de prosseguir.");
+            }
+        }
+    </script>
+</body>
+</html>

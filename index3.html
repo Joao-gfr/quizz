@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/Style3.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qual membro da BatFamily você é?</title>
+</head>
+<body>
+    <div class="quizContainer">
+        <h1>Quiz</h1>
+        <img src="assets/img/batheader.jpg" alt="Header da Batfam" id="imgheader">
+        <h2 id="titulo">Qual Membro da BatFamily você é?</h2>
+        <div class="questoes">
+            <p class="pergunta">Qual é a sua cor favorita?</p>
+        </div>
+        <div class="cores">
+            <div class="cor"    id="preto"     data-value="batman"></div>
+            <div class="cor"    id="vermelho"  data-value="redhood"></div>
+            <div class="cor"    id="azul"      data-value="nightwing"></div>
+            <div class="cor"    id="amarelo"   data-value="redrobin"></div>
+            <div class="cor"    id="verde"     data-value="robin"></div>
+        </div>
+        <button class="botao" onclick="index4()">Próximo</button>
+    </div>
+    <script>
+        function index4() {
+            const cores = document.querySelectorAll(".cor");
+            let selecionada = null;
+
+            cores.forEach((cor) => {
+                if (cor.classList.contains("selecionada")) {
+                    selecionada = cor.getAttribute("data-value");
+                }
+            });
+
+            if (selecionada) {
+                localStorage.setItem("Questao2", selecionada);
+                window.location.href = 'index4.html';
+            } else {
+                alert("Por favor, selecione uma opção antes de prosseguir.");
+            }
+        }
+
+        document.querySelectorAll(".cor").forEach((cor) => {
+            cor.addEventListener("click", () => {
+                document.querySelectorAll(".cor").forEach((c) => c.classList.remove("selecionada"));
+                cor.classList.add("selecionada");
+            });
+        });
+    </script>
+</body>
+</html>
