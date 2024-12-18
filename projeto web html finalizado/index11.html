@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="Style11.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qual membro da BatFamily você é?</title>
+</head>
+<body>
+    <div class="quizConteiner">
+        <h1>Quiz</h1>
+        <img src="batheader.jpg" alt="Header da Batfam" id="imgheader">
+        <h1 id="titulo">Qual Membro da BatFamily você é?</h1>
+        <div class="questoes">
+            <p class="pergunta">Para onde você viajaria durante as férias?</p>
+        </div>
+        <form class="opcoes">
+            <label>
+                <input type="radio" name="resposta" value="batman">
+                Uma ilha isolada com uma praia tranquila.
+            </label>
+            <label>
+                <input type="radio" name="resposta" value="nightwing">
+                Para uma cidade grande e vibrante.
+            </label>
+            <label>
+                <input type="radio" name="resposta" value="redhood">
+                Para um lugar remoto, cercado por floresta e vida selvagem.
+            </label>
+            <label>
+                <input type="radio" name="resposta" value="redrobin">
+                Para um país estrangeiro com uma cultura rica e histórica.
+            </label>
+        </form>
+        <button class="botao" onclick="finalizarQuiz()">Finalizar</button>
+    </div>
+    <script>
+        function finalizarQuiz() {
+            const inputs = document.querySelectorAll('input[type="radio"]:checked');
+            if (inputs.length === 0) {
+                alert('Por favor, selecione uma resposta antes de prosseguir.');
+                return;
+            }
+            const questaoAtual = document.querySelector('.questoes .pergunta').textContent;
+            const valorSelecionado = inputs[0].value;
+            salvarResposta(questaoAtual, valorSelecionado);
+            const personagem = calcularResultado();
+            window.location.href = `resultado.html?personagem=${personagem}`;
+        }
+    </script>
+</body>
+</html>
